@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -621,3 +622,628 @@
 </body>
 </html>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Operations Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .view {
+            display: none;
+        }
+        .view.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            transform: translateX(0);
+        }
+        .nav-link:hover {
+            background-color: #3b3f5c; /* A slightly lighter shade for hover */
+            transform: translateX(4px);
+        }
+        .nav-link.active {
+             background: linear-gradient(90deg, #4361ee, #3a53c4);
+             box-shadow: 0 4px 15px -5px rgba(67, 97, 238, 0.5);
+        }
+        .card-hover {
+            transition: all 0.2s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .btn-primary {
+             background: linear-gradient(90deg, #4361ee, #3a53c4);
+             transition: all 0.3s ease;
+             box-shadow: 0 4px 15px -5px rgba(67, 97, 238, 0.5);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px -5px rgba(67, 97, 238, 0.7);
+        }
+
+    </style>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyANLCKDxJhsYSj2KrPo3P0wH_4Pfk7ThX4",
+        authDomain: "lwc-systems.firebaseapp.com",
+        projectId: "lwc-systems",
+        storageBucket: "lwc-systems.firebasestorage.app",
+        messagingSenderId: "2011553553",
+        appId: "1:2011553553:web:e174fe0bc0208e3b01f6b0",
+        measurementId: "G-56G56M40P9"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <!-- Loading Spinner -->
+    <div id="loading-overlay" class="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center">
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#4361ee]"></div>
+    </div>
+    
+    <!-- Login View -->
+    <div id="login-view" class="min-h-screen w-full flex items-center justify-center bg-slate-50 p-4">
+        <div class="w-full max-w-4xl bg-white rounded-2xl shadow-2xl flex overflow-hidden">
+            <!-- Creative Side Panel -->
+            <div class="w-1/2 hidden md:block bg-gradient-to-br from-[#4361ee] to-[#3a53c4] p-12 text-white flex flex-col justify-center">
+                <h1 class="text-4xl font-extrabold mb-4 leading-tight">Welcome to the Company Hub</h1>
+                <p class="text-indigo-100">Your central dashboard for tasks, performance, and collaboration. Let's make today productive.</p>
+                <div class="mt-8">
+                     <!-- You can add an illustration or icon here -->
+                     <svg class="w-48 h-48 mx-auto opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </div>
+            </div>
+            <!-- Form Side -->
+            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                 <div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-2">Sign In</h2>
+                    <p class="text-slate-500 mb-8">Select a profile to simulate login.</p>
+                </div>
+                <div id="user-selection" class="mt-4 space-y-3">
+                     <!-- User buttons will be populated here -->
+                </div>
+                <div class="text-xs text-center text-slate-400 mt-8">
+                    <p class="font-semibold">User ID: <span id="auth-uid" class="text-[#4361ee]"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main Application Wrapper -->
+    <div id="app" class="hidden">
+        <div class="flex h-screen bg-slate-100">
+            <!-- Sidebar -->
+            <div class="w-64 bg-[#2c2f48] text-slate-200 flex flex-col">
+                <div class="flex items-center justify-center px-8 py-6 border-b border-slate-700">
+                     <svg class="w-8 h-8 mr-3 text-[#4361ee]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547a2 2 0 01-1.022.547m13.406 0a2 2 0 011.022.547m-15.45 0a2 2 0 001.022.547m13.406 0a2 2 0 011.022.547m-15.45 0a2 2 0 001.022.547m13.406 0L21 16m-1.572-2.172a4 4 0 015.144 0M4.5 13.828a4 4 0 005.144 0M12 12h.01M15 12h.01M9 12h.01M12 12v3m0 0l-1.07.603a4 4 0 00-3.86 5.144L8 21m0 0a4 4 0 005.144-5.144L12 15m0 0l1.07.603a4 4 0 013.86 5.144L16 21m0 0a4 4 0 01-5.144-5.144L12 15m-3.86-5.144A4 4 0 018 6.136V6a4 4 0 014-4v0a4 4 0 014 4v.136a4 4 0 01-1.14 2.728L12 12z"></path></svg>
+                    <h1 class="text-xl font-bold">Company Hub</h1>
+                </div>
+                <nav class="flex-1 px-4 py-4 space-y-2">
+                    <a href="#" data-view="dashboard" class="nav-link active flex items-center px-4 py-2.5 rounded-lg">
+                        <svg class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        Dashboard
+                    </a>
+                    <a href="#" data-view="tasks" class="nav-link flex items-center px-4 py-2.5 rounded-lg">
+                        <svg class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
+                        My Tasks
+                    </a>
+                    <a href="#" data-view="leaves" class="nav-link flex items-center px-4 py-2.5 rounded-lg">
+                       <svg class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        Leave Management
+                    </a>
+                    <a href="#" data-view="leaderboard" class="nav-link flex items-center px-4 py-2.5 rounded-lg">
+                        <svg class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        Leaderboard
+                    </a>
+                    <a href="#" id="admin-link" data-view="admin" class="nav-link flex items-center px-4 py-2.5 rounded-lg hidden">
+                        <svg class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        Admin Panel
+                    </a>
+                </nav>
+                <div class="px-6 py-4 border-t border-slate-700">
+                    <div id="user-profile-widget" class="mb-4">
+                        <!-- Populated by JS -->
+                    </div>
+                    <button id="logout-btn" class="w-full flex items-center justify-center bg-red-500/20 hover:bg-red-500/40 text-red-300 font-semibold py-2 px-4 rounded-lg transition-colors">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                        Logout
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <main class="flex-1 p-6 lg:p-10 overflow-y-auto">
+                
+                <!-- Dashboard View -->
+                <div id="dashboard-view" class="view active">
+                    <div id="welcome-message-container" class="mb-8">
+                       <h1 class="text-3xl font-bold text-slate-900" id="welcome-message-name"></h1>
+                       <p class="text-slate-500 mt-1" id="welcome-message-quote"></p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Cards with Icons -->
+                        <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-semibold text-slate-600">My Income</h3>
+                                <div class="p-2 bg-green-100 rounded-full"><svg class="w-6 h-6 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
+                            </div>
+                            <p class="text-3xl font-bold text-slate-800 mt-2" id="salary-display">$0.00</p>
+                            <p class="text-sm text-slate-400">Annual Salary</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                             <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-semibold text-slate-600">My Score</h3>
+                                <div class="p-2 bg-blue-100 rounded-full"><svg class="w-6 h-6 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg></div>
+                            </div>
+                            <p class="text-3xl font-bold text-slate-800 mt-2" id="score-display">0</p>
+                             <p class="text-sm text-slate-400">Based on KPIs</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                           <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-semibold text-slate-600">Pending Tasks</h3>
+                                <div class="p-2 bg-yellow-100 rounded-full"><svg class="w-6 h-6 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                            </div>
+                            <p class="text-3xl font-bold text-slate-800 mt-2" id="pending-tasks-display">0</p>
+                            <p class="text-sm text-slate-400">Awaiting completion</p>
+                        </div>
+                         <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                           <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-semibold text-slate-600">Leaves Taken</h3>
+                                <div class="p-2 bg-purple-100 rounded-full"><svg class="w-6 h-6 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>
+                            </div>
+                            <p class="text-3xl font-bold text-slate-800 mt-2" id="leaves-taken-display">0 / 20</p>
+                            <p class="text-sm text-slate-400">Annual leave days</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Tasks View -->
+                <div id="tasks-view" class="view">
+                    <h1 class="text-3xl font-bold text-slate-900">My Tasks</h1>
+                     <div class="mt-8 bg-white p-6 rounded-xl shadow-lg">
+                        <h2 class="text-xl font-semibold mb-4">Add a New Task</h2>
+                        <form id="add-task-form" class="flex items-center space-x-4">
+                            <input type="text" id="task-description" placeholder="What needs to be done?" class="flex-grow p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4361ee]" required>
+                            <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-lg">Add Task</button>
+                        </form>
+                    </div>
+                    <div class="mt-8 bg-white p-6 rounded-xl shadow-lg">
+                        <h2 class="text-xl font-semibold mb-4">Task List</h2>
+                        <div id="task-list" class="space-y-3">
+                            <!-- Tasks will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leave Management View -->
+                <div id="leaves-view" class="view">
+                     <h1 class="text-3xl font-bold text-slate-900">Leave Management</h1>
+                    <div class="mt-8 bg-white p-6 rounded-xl shadow-lg">
+                        <h2 class="text-xl font-semibold mb-4">Request Time Off</h2>
+                        <form id="leave-request-form" class="space-y-4">
+                            <div>
+                                <label for="leave-reason" class="block text-sm font-medium text-slate-700">Reason</label>
+                                <input type="text" id="leave-reason" placeholder="e.g., Annual Vacation" class="mt-1 block w-full p-3 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-[#4361ee] focus:border-[#4361ee]" required>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="leave-start-date" class="block text-sm font-medium text-slate-700">Start Date</label>
+                                    <input type="date" id="leave-start-date" class="mt-1 block w-full p-3 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-[#4361ee] focus:border-[#4361ee]" required>
+                                </div>
+                                <div>
+                                    <label for="leave-end-date" class="block text-sm font-medium text-slate-700">End Date</label>
+                                    <input type="date" id="leave-end-date" class="mt-1 block w-full p-3 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-[#4361ee] focus:border-[#4361ee]" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary text-white font-bold py-3 px-6 rounded-lg">Submit Request</button>
+                        </form>
+                    </div>
+
+                     <div class="mt-8 bg-white p-6 rounded-xl shadow-lg">
+                        <h2 class="text-xl font-semibold mb-4">My Leave History</h2>
+                        <div id="leave-list" class="space-y-2">
+                            <!-- Leave requests will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leaderboard View -->
+                <div id="leaderboard-view" class="view">
+                    <h1 class="text-3xl font-bold text-slate-900">Company Leaderboard</h1>
+                    <div class="mt-8 bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-slate-50 border-b border-slate-200">
+                                    <tr>
+                                        <th class="p-4 text-sm font-semibold text-slate-500 uppercase">Rank</th>
+                                        <th class="p-4 text-sm font-semibold text-slate-500 uppercase">Employee</th>
+                                        <th class="p-4 text-sm font-semibold text-slate-500 uppercase">Role</th>
+                                        <th class="p-4 text-sm font-semibold text-slate-500 uppercase">Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leaderboard-body">
+                                    <!-- Leaderboard data will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Panel View -->
+                <div id="admin-view" class="view">
+                    <h1 class="text-3xl font-bold text-slate-900">Admin Panel</h1>
+                    <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h2 class="text-xl font-semibold mb-4">Create New Employee</h2>
+                            <form id="create-user-form" class="space-y-4">
+                                <input type="text" id="new-user-name" placeholder="Full Name" class="block w-full p-3 border border-slate-300 rounded-lg" required>
+                                <input type="email" id="new-user-email" placeholder="Email Address" class="block w-full p-3 border border-slate-300 rounded-lg" required>
+                                <select id="new-user-role" class="block w-full p-3 border border-slate-300 rounded-lg bg-white">
+                                    <option value="viewer">Viewer</option>
+                                    <option value="editor">Editor</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                                <input type="number" id="new-user-salary" placeholder="Annual Salary" class="block w-full p-3 border border-slate-300 rounded-lg" required>
+                                <button type="submit" class="btn-primary w-full text-white font-bold py-3 px-6 rounded-lg">Create Employee</button>
+                            </form>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h2 class="text-xl font-semibold mb-4">Pending Leave Requests</h2>
+                            <div id="admin-leave-requests" class="space-y-3 max-h-96 overflow-y-auto">
+                                <!-- Admin leave requests populate here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+    
+    <!-- Custom Modal -->
+    <div id="custom-modal" class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center p-4 hidden">
+        <div id="custom-modal-content" class="bg-white p-6 rounded-xl shadow-2xl text-center max-w-sm w-full">
+            <!-- Modal content here -->
+        </div>
+    </div>
+
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, onSnapshot, addDoc, query, where, serverTimestamp, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-hr-app-pro';
+        let db, auth, currentUser = null, userUnsubscribe = null;
+
+        const views = document.querySelectorAll('.view');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const loginView = document.getElementById('login-view');
+        const appView = document.getElementById('app');
+        const modal = document.getElementById('custom-modal');
+        const modalContent = document.getElementById('custom-modal-content');
+        
+        const showLoader = (show) => { loadingOverlay.style.display = show ? 'flex' : 'none'; };
+
+        const showModal = (title, message, isSuccess = true) => {
+            modalContent.innerHTML = `
+                <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${isSuccess ? 'bg-green-100' : 'bg-red-100'}">
+                    <svg class="w-8 h-8 ${isSuccess ? 'text-green-500' : 'text-red-500'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        ${isSuccess ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>' : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'}
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800">${title}</h3>
+                <p class="text-sm text-slate-500 mt-2">${message}</p>`;
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.add('hidden'), 3000);
+        };
+        
+        async function initializeFirebase() {
+            try {
+                const finalConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : firebaseConfig;
+                const app = initializeApp(finalConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        console.log("Auth successful:", user.uid);
+                        document.getElementById('auth-uid').textContent = user.uid;
+                        await setupInitialData();
+                        await renderUserSelection();
+                        showLoader(false);
+                    }
+                });
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (error) {
+                console.error("Firebase Init Error:", error);
+                const loginContainer = document.querySelector('#login-view > div > div:last-child');
+                if(loginContainer) {
+                    loginContainer.innerHTML = `<div class="text-red-600 bg-red-100 p-4 rounded-lg"><h3 class="font-bold">Connection Error</h3><p>Could not connect to backend services. Check your Firebase config.</p></div>`;
+                }
+                showLoader(false);
+            }
+        }
+        
+        async function setupInitialData() {
+            const usersRef = collection(db, `artifacts/${appId}/public/data/users`);
+            const users = {
+                'admin-user': { name: 'Alex Johnson (Admin)', email: 'alex@example.com', role: 'admin', score: 1500, salary: 90000 },
+                'editor-user': { name: 'Brenda Smith (Editor)', email: 'brenda@example.com', role: 'editor', score: 1150, salary: 75000 },
+                'viewer-user': { name: 'Charlie Day (Viewer)', email: 'charlie@example.com', role: 'viewer', score: 800, salary: 60000 }
+            };
+            for (const [id, data] of Object.entries(users)) {
+                const docRef = doc(usersRef, id);
+                const docSnap = await getDoc(docRef);
+                if (!docSnap.exists()) await setDoc(docRef, data);
+            }
+        }
+        
+        function renderUserSelection() {
+            const userSelectionDiv = document.getElementById('user-selection');
+            const usersRef = collection(db, `artifacts/${appId}/public/data/users`);
+            onSnapshot(usersRef, (snapshot) => {
+                userSelectionDiv.innerHTML = '';
+                snapshot.forEach(doc => {
+                    const user = doc.data();
+                    const btn = document.createElement('button');
+                    btn.className = "w-full text-left py-3 px-4 border border-slate-200 rounded-lg shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4361ee] transition-all";
+                    btn.innerHTML = `<span class="font-bold">${user.name}</span> <span class="text-slate-500 capitalize">(${user.role})</span>`;
+                    btn.onclick = () => loginAsUser(doc.id);
+                    userSelectionDiv.appendChild(btn);
+                });
+            });
+        }
+        
+        async function loginAsUser(userId) {
+            showLoader(true);
+            const userDocRef = doc(db, `artifacts/${appId}/public/data/users`, userId);
+            const userSnap = await getDoc(userDocRef);
+            if (userSnap.exists()) {
+                currentUser = { id: userSnap.id, ...userSnap.data() };
+                await initializeAppForUser();
+                loginView.style.display = 'none';
+                appView.style.display = 'block';
+            } else {
+                console.error("User profile not found!");
+            }
+            showLoader(false);
+        }
+
+        function initializeAppForUser() {
+            updateUIForRole();
+            attachEventListeners();
+            
+            const userDocRef = doc(db, `artifacts/${appId}/public/data/users`, currentUser.id);
+            if (userUnsubscribe) userUnsubscribe();
+            userUnsubscribe = onSnapshot(userDocRef, (doc) => {
+                 currentUser = { id: doc.id, ...doc.data() };
+                 updateDashboard();
+                 updateProfileWidget();
+            });
+            showView('dashboard');
+        }
+
+        function updateUIForRole() {
+            document.getElementById('admin-link').classList.toggle('hidden', currentUser.role !== 'admin');
+        }
+
+        function showView(viewId) {
+            views.forEach(v => v.classList.remove('active'));
+            document.getElementById(`${viewId}-view`).classList.add('active');
+            
+            navLinks.forEach(l => l.classList.remove('active'));
+            document.querySelector(`.nav-link[data-view="${viewId}"]`).classList.add('active');
+
+            if (viewId === 'dashboard') updateDashboard();
+            else if (viewId === 'tasks') renderTasks();
+            else if (viewId === 'leaves') renderLeaveRequests();
+            else if (viewId === 'leaderboard') renderLeaderboard();
+            else if (viewId === 'admin' && currentUser.role === 'admin') renderAdminPanel();
+        }
+
+        function updateDashboard() {
+            const quotes = [ "The secret of getting ahead is getting started.", "The best way to predict the future is to create it.", "Success is the sum of small efforts, repeated day in and day out." ];
+            document.getElementById('welcome-message-name').textContent = `Welcome back, ${currentUser.name.split(' ')[0]}!`;
+            document.getElementById('welcome-message-quote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('salary-display').textContent = `$${currentUser.salary.toLocaleString()}`;
+            document.getElementById('score-display').textContent = currentUser.score;
+
+            onSnapshot(query(collection(db, `artifacts/${appId}/public/data/tasks`), where("userId", "==", currentUser.id), where("status", "==", "pending")), s => {
+                document.getElementById('pending-tasks-display').textContent = s.size;
+            });
+            
+            onSnapshot(query(collection(db, `artifacts/${appId}/public/data/leaves`), where("userId", "==", currentUser.id), where("status", "==", "Approved")), s => {
+                 let days = 0;
+                 s.forEach(d => {
+                    const l = d.data();
+                    days += Math.ceil(Math.abs(l.endDate.toDate() - l.startDate.toDate()) / (1000 * 60 * 60 * 24)) + 1;
+                 });
+                document.getElementById('leaves-taken-display').textContent = `${days} / 20`;
+            });
+        }
+        
+        function updateProfileWidget() {
+            document.getElementById('user-profile-widget').innerHTML = `
+                <p class="font-bold text-white">${currentUser.name}</p>
+                <p class="text-sm text-slate-400 capitalize">${currentUser.role}</p>
+            `;
+        }
+
+        function renderTasks() {
+            const taskList = document.getElementById('task-list');
+            const q = query(collection(db, `artifacts/${appId}/public/data/tasks`), where("userId", "==", currentUser.id));
+            onSnapshot(q, (snapshot) => {
+                taskList.innerHTML = snapshot.empty ? `<p class="text-slate-500 text-center py-4">No tasks yet. Let's add one!</p>` : '';
+                snapshot.forEach(d => {
+                    const task = { id: d.id, ...d.data() };
+                    const el = document.createElement('div');
+                    el.className = `flex items-center justify-between p-3 rounded-lg transition-colors ${task.status === 'completed' ? 'bg-green-50' : 'bg-slate-50'}`;
+                    el.innerHTML = `<div class="flex items-center"><input type="checkbox" data-id="${task.id}" class="h-5 w-5 rounded border-slate-300 text-[#4361ee] focus:ring-[#4361ee] task-checkbox" ${task.status === 'completed' ? 'checked' : ''}><p class="ml-4 ${task.status === 'completed' ? 'line-through text-slate-400' : 'text-slate-700'}">${task.description}</p></div><button data-id="${task.id}" class="text-red-400 hover:text-red-600 delete-task-btn font-bold text-xl">&times;</button>`;
+                    taskList.appendChild(el);
+                });
+            });
+        }
+        
+        async function handleAddTask(e) {
+            e.preventDefault();
+            const input = document.getElementById('task-description');
+            if (!input.value.trim()) return;
+            await addDoc(collection(db, `artifacts/${appId}/public/data/tasks`), { userId: currentUser.id, description: input.value, status: 'pending', createdAt: serverTimestamp() });
+            input.value = '';
+        }
+        
+        async function handleTaskInteraction(e) {
+            const target = e.target, taskId = target.dataset.id;
+            if (!taskId) return;
+            const taskDoc = doc(db, `artifacts/${appId}/public/data/tasks`, taskId);
+            const userDoc = doc(db, `artifacts/${appId}/public/data/users`, currentUser.id);
+
+            if (target.classList.contains('task-checkbox')) {
+                const isCompleted = target.checked;
+                await updateDoc(taskDoc, { status: isCompleted ? 'completed' : 'pending' });
+                await updateDoc(userDoc, { score: currentUser.score + (isCompleted ? 10 : -10) });
+            } else if (target.classList.contains('delete-task-btn')) {
+                const taskSnap = await getDoc(taskDoc);
+                if (taskSnap.data().status === 'completed') await updateDoc(userDoc, { score: currentUser.score - 10 });
+                await deleteDoc(taskDoc);
+            }
+        }
+        
+        function renderLeaveRequests() {
+            const leaveList = document.getElementById('leave-list');
+            const q = query(collection(db, `artifacts/${appId}/public/data/leaves`), where("userId", "==", currentUser.id));
+            onSnapshot(q, (snapshot) => {
+                leaveList.innerHTML = snapshot.empty ? `<p class="text-slate-500 text-center py-4">No leave requests found.</p>` : '';
+                snapshot.forEach(d => {
+                    const l = d.data();
+                    const colors = { Pending: 'bg-yellow-100 text-yellow-800', Approved: 'bg-green-100 text-green-800', Rejected: 'bg-red-100 text-red-800' };
+                    const el = document.createElement('div');
+                    el.className = 'flex justify-between items-center p-3 bg-slate-50 rounded-lg';
+                    el.innerHTML = `<div><p class="font-medium text-slate-700">${l.reason}</p><p class="text-sm text-slate-500">${l.startDate.toDate().toLocaleDateString()} - ${l.endDate.toDate().toLocaleDateString()}</p></div><span class="px-2 py-1 text-xs font-semibold rounded-full ${colors[l.status]}">${l.status}</span>`;
+                    leaveList.appendChild(el);
+                });
+            });
+        }
+        
+        async function handleLeaveRequest(e) {
+            e.preventDefault();
+            const reason = document.getElementById('leave-reason').value, start = document.getElementById('leave-start-date').value, end = document.getElementById('leave-end-date').value;
+            if (!reason || !start || !end) return showModal('Error', 'Please fill all leave request fields.', false);
+            await addDoc(collection(db, `artifacts/${appId}/public/data/leaves`), { userId: currentUser.id, userName: currentUser.name, reason, startDate: new Date(start), endDate: new Date(end), status: 'Pending', requestedAt: serverTimestamp() });
+            showModal('Success', 'Your leave request has been submitted.');
+            e.target.reset();
+        }
+
+        function renderLeaderboard() {
+            const body = document.getElementById('leaderboard-body');
+            onSnapshot(collection(db, `artifacts/${appId}/public/data/users`), (snapshot) => {
+                const users = [];
+                snapshot.forEach(d => users.push(d.data()));
+                users.sort((a, b) => b.score - a.score);
+                body.innerHTML = '';
+                users.forEach((user, index) => {
+                    const rank = index + 1;
+                    const row = document.createElement('tr');
+                    row.className = 'border-b border-slate-200 hover:bg-slate-50';
+                    row.innerHTML = `<td class="p-4 font-bold text-lg text-slate-700">${rank}</td><td class="p-4 text-slate-800">${user.name}</td><td class="p-4 text-slate-600 capitalize">${user.role}</td><td class="p-4 font-semibold text-[#4361ee]">${user.score}</td>`;
+                    body.appendChild(row);
+                });
+            });
+        }
+
+        function renderAdminPanel() {
+            const list = document.getElementById('admin-leave-requests');
+            const q = query(collection(db, `artifacts/${appId}/public/data/leaves`), where("status", "==", "Pending"));
+            onSnapshot(q, (snapshot) => {
+                list.innerHTML = snapshot.empty ? `<p class="text-slate-500 text-center py-4">No pending leave requests.</p>` : '';
+                snapshot.forEach(d => {
+                    const l = { id: d.id, ...d.data() };
+                    const el = document.createElement('div');
+                    el.className = 'p-3 bg-slate-100 rounded-lg';
+                    el.innerHTML = `<p class="font-semibold text-slate-800">${l.userName}</p><p class="text-sm text-slate-600">${l.reason} (${l.startDate.toDate().toLocaleDateString()} to ${l.endDate.toDate().toLocaleDateString()})</p><div class="mt-2 space-x-2"><button data-id="${l.id}" data-status="Approved" class="admin-leave-btn bg-green-500 hover:bg-green-600 text-white text-xs font-bold py-1 px-3 rounded-full">Approve</button><button data-id="${l.id}" data-status="Rejected" class="admin-leave-btn bg-red-500 hover:bg-red-600 text-white text-xs font-bold py-1 px-3 rounded-full">Reject</button></div>`;
+                    list.appendChild(el);
+                });
+            });
+        }
+        
+        async function handleCreateUser(e) {
+            e.preventDefault();
+            const name = document.getElementById('new-user-name').value, email = document.getElementById('new-user-email').value, role = document.getElementById('new-user-role').value, salary = parseInt(document.getElementById('new-user-salary').value, 10);
+            if (!name || !email || !role || isNaN(salary)) return showModal('Error', 'Please fill all fields correctly.', false);
+            
+            const newUserId = `user-${Date.now()}`;
+            await setDoc(doc(db, `artifacts/${appId}/public/data/users`, newUserId), { name, email, role, salary, score: 0 });
+            showModal('Success', `User ${name} created successfully!`);
+            e.target.reset();
+        }
+
+        async function handleAdminLeaveAction(e) {
+            if (!e.target.classList.contains('admin-leave-btn')) return;
+            await updateDoc(doc(db, `artifacts/${appId}/public/data/leaves`, e.target.dataset.id), { status: e.target.dataset.status });
+        }
+
+        function attachEventListeners() {
+            navLinks.forEach(link => link.addEventListener('click', (e) => { e.preventDefault(); showView(e.currentTarget.dataset.view); }));
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                if (userUnsubscribe) userUnsubscribe();
+                currentUser = null; appView.style.display = 'none'; loginView.style.display = 'flex';
+            });
+            
+            document.getElementById('add-task-form').addEventListener('submit', handleAddTask);
+            document.getElementById('task-list').addEventListener('click', handleTaskInteraction);
+            document.getElementById('leave-request-form').addEventListener('submit', handleLeaveRequest);
+            document.getElementById('create-user-form').addEventListener('submit', handleCreateUser);
+            document.getElementById('admin-leave-requests').addEventListener('click', handleAdminLeaveAction);
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeFirebase);
+    </script>
+</body>
+</html>
+
+>>>>>>> 50277849fa6530f8b5cac422bb7fb474aadf5dcf
